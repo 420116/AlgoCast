@@ -6,22 +6,26 @@
 getValidSub = (str) => {
   let start = "(";
   let end = ")";
-  let count = 0;
+  let stack = [-1];
   let maxLength = 0;
-  let isOpen = false;
   for (let i = 0; i < str.length; i++) {
-    if (str[i] === end) {
-      maxLength = Math.max(maxLength, count);
-      isOpen = false;
-    }
     if (str[i] === start) {
-      isOpen = !isOpen;
+      stack.push(i);
     }
-    if (isOpen) {
-      count = count + 1;
+    if (str[i] === end) {
+      if (stack.length > 0) {
+        stack.pop();
+      }
+      if (stack.length > 0) {
+        maxLength = Math.max(maxLength, i - stack[stack.length - 1]);
+      } else {
+        stack.push(i);
+      }
     }
   }
-  return maxLength;
+  console.log(maxLength);
 };
 
-getValidSub("()(())");
+//getValidSub("()(())");
+//getValidSub("))()(()");
+getValidSub("))(()((())");
