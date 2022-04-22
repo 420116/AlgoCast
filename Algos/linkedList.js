@@ -24,9 +24,7 @@ var LL = {
   },
   delete: function (value) {
     if (this.root !== undefined) {
-      console.log(1, value);
       if (this.root.value === value) {
-        console.log(2);
         this.root = this.root.next;
         return true;
       }
