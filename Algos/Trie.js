@@ -32,6 +32,7 @@ function Trie() {
     var oCurrent = this.root;
     for (let i = 0; i < sValue.length; i++) {
       if (oCurrent.map[sValue[i]] !== undefined) {
+        //console.log(oCurrent.map[sValue[i]]);
         oCurrent = oCurrent.map[sValue[i]];
       } else {
         return false;
@@ -65,3 +66,15 @@ function Trie() {
     }
   };
 }
+
+let oTrie = new Trie();
+
+let aRepo = ["mobile", "mouse", "moneypot", "monitor", "mousepad"];
+
+for (var i = 0; i < aRepo.length; i++) {
+  oTrie.insert(aRepo[i]);
+}
+
+//console.log(oTrie.root.map);
+
+console.log(oTrie.search("mou"));
