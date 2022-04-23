@@ -15,6 +15,7 @@ function Trie() {
   this.insert = function (sValue) {
     var oCurrent = this.root;
     for (let i = 0; i < sValue.length; i++) {
+      //if map has prefix value avalaible or not like "m" or "r"
       if (oCurrent.map[sValue[i]] !== undefined) {
         oCurrent = oCurrent.map[sValue[i]];
       } else {
@@ -39,6 +40,27 @@ function Trie() {
       }
     }
     return oCurrent.isWord;
+  };
+
+  this.combinationSearch = function (sValue) {
+    let arr = [];
+    let oCurrent = this.root;
+    let counter = 0;
+    let str = "";
+    // console.log(sValue, Object.entries(oCurrent.map), oCurrent.map[sValue[0]]);
+    if (oCurrent.map[sValue[0]] !== undefined) {
+      while (oCurrent.isWord === false) {
+        if (oCurrent.isWord === true) {
+          break;
+        }
+        console.log(oCurrent);
+        if (counter < sValue.length) {
+          console.log(1, oCurrent.haveRecord());
+          oCurrent = oCurrent.map[sValue[counter]];
+        }
+        counter++;
+      }
+    }
   };
 
   this.delete = function (sValue) {
@@ -77,4 +99,4 @@ for (var i = 0; i < aRepo.length; i++) {
 
 //console.log(oTrie.root.map);
 
-console.log(oTrie.search("mou"));
+console.log(oTrie.combinationSearch("mo"));
