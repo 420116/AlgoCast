@@ -9,23 +9,20 @@
 // has three inversions (2, 1), (4, 1), (4, 3).
 
 const getCount = (arr) => {};
-
-const split = (arr, start, end, arr1, count) => {
+const split = (arr, start, end, invCount) => {
   if (end - start < 1) {
-    return;
+    return invCount;
   } else {
     let mid = parseInt((start + end) / 2);
-    split(arr, start, mid, arr1, count);
-    count = count + 1;
-    split(arr, mid + 1, end, arr1, count);
-    count = count + 1;
-    merge(arr, mid, start, end, arr1, count);
-    count = count + 1;
-    //console.log(arr1);
+    invCount =
+      split(arr, start, mid, invCount) +
+      split(arr, mid + 1, end, invCount) +
+      merge(arr, mid, start, end, invCount);
+    return invCount;
   }
 };
 
-const merge = (arr, mid, start, end, arr1, count) => {
+const merge = (arr, mid, start, end, invCount) => {
   let leftPointer = 0;
   let rightPointer = 0;
   let left = arr.slice(start, mid + 1);
@@ -37,7 +34,7 @@ const merge = (arr, mid, start, end, arr1, count) => {
         rightPointer++;
         i++;
       }
-      return;
+      return invCount;
     }
 
     if (rightPointer === right.length) {
@@ -46,25 +43,24 @@ const merge = (arr, mid, start, end, arr1, count) => {
         leftPointer++;
         i++;
       }
-      return;
+      return invCount;
     }
 
     if (left[leftPointer] <= right[rightPointer]) {
-      //arr1.push([right[rightPointer], left[leftPointer]]);
       arr[i] = left[leftPointer];
       leftPointer++;
     } else {
-      arr1.push([left[leftPointer], right[rightPointer]]);
-      //count = count + 1;
-      //console.log(count);
+      invCount = invCount + (left.length - leftPointer);
       arr[i] = right[rightPointer];
       rightPointer++;
     }
   }
+
+  return invCount;
 };
 
+//let arr = [7, 9, 12, 6, 8, 10];
 let arr = [2, 4, 1, 3, 5];
 let arr1 = [];
-let count = 0;
-split(arr, 0, 4, arr1, count);
-console.log(arr1, arr, count);
+
+console.log(split(arr, 0, 4, 0), arr);
