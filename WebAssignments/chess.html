@@ -1,0 +1,61 @@
+<html>
+  <style>
+    .even {
+      display: flex;
+      background-color: black;
+      color: white;
+      border: 1px solid black;
+      font-size: 1rem;
+      margin: 1px;
+      width: 2rem;
+      height: 2rem;
+    }
+    .odd {
+      display: flex;
+      color: black;
+      font-size: 1rem;
+      background-color: rgb(254, 249, 249);
+      border: 1px solid black;
+      width: 2rem;
+      height: 2rem;
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+  <script>
+    function add() {
+      let count = 1;
+      for (let i = 0; i < 8; i++) {
+        let row = document.createElement("div");
+        row.classList.add("row");
+        for (let j = 0; j < 8; j++) {
+          let element = document.createElement("div");
+          let text = document.createTextNode(count);
+          if ((i + 1) % 2 !== 0) {
+            if (count % 2 === 0) {
+              element.classList.add("even");
+            } else {
+              element.classList.add("odd");
+            }
+          } else {
+            if (count % 2 === 0) {
+              element.classList.add("odd");
+            } else {
+              element.classList.add("even");
+            }
+          }
+          element.append(text);
+          row.appendChild(element);
+          count++;
+        }
+        document.getElementById("root").appendChild(row);
+      }
+    }
+  </script>
+  <body>
+    <div id="root" style="background: #9d00ff; width: 50%">Hi</div>
+    <button onclick="add()">Click me</button>
+  </body>
+</html>
