@@ -50,12 +50,20 @@
           row.appendChild(element);
           count++;
         }
-        document.getElementById("root").appendChild(row);
+        document.getElementById("chess").appendChild(row);
       }
     }
   </script>
-  <body>
-    <div id="root" style="background: #9d00ff; width: 50%">Hi</div>
-    <button onclick="add()">Click me</button>
+  <body style="background: #b295c5; height: 100%; justify-content: center">
+    <div id="root" style="width: 100%; display: flex; justify-content: center">
+      Chess Board
+    </div>
+    <div id="chess" style="height: 300px"></div>
+    <button
+      onclick="add()"
+      style="width: 50%; display: flex; justify-content: center"
+    >
+      Click me
+    </button>
   </body>
 </html>
