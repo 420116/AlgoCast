@@ -13,7 +13,7 @@ const checkCount = (str, leftPointer, rightPointer) => {
   while (leftPointer >= 0 && rightPointer < str.length) {
     let newStr = str.substring(leftPointer, rightPointer + 1);
     if (isPalindrome(newStr)) {
-      //console.log(newStr);
+      console.log(newStr);
       count++;
     }
     leftPointer--;
@@ -26,4 +26,5 @@ const isPalindrome = (str) => {
   return str === str.split("").reverse().join("");
 };
 
-console.log(getCount("abccba"));
+//console.log(getCount("abccba"));
+console.log(getCount("aabe"));
