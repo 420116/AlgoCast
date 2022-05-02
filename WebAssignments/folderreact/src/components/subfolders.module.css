@@ -1,0 +1,18 @@
+.btn {
+  display: flex;
+  color: rgb(25, 26, 26);
+  margin-left: 5px;
+}
+
+.label {
+  font-size: 1rem;
+}
+
+.parent {
+  display: flex;
+}
+
+.subfolders {
+  margin-left: 1rem;
+  margin-bottom: 2px;
+}
