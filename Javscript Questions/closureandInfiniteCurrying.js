@@ -1,8 +1,10 @@
-function add(a){
-    return function(b){
-        if(b) return add(a+b);
-        return b;
+const infinteCurr = (a) => {
+  return (b) => {
+    if (b) {
+      return infinteCurr(a + b);
     }
-}
+    return a;
+  };
+};
 
-// infinte currying -->console.log((1)(2)(3)...());
+console.log(infinteCurr(1)(2)(3)(4)(9)()); //Output 19
