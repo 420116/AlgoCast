@@ -3,6 +3,9 @@
 		{
 			"name": "AlgoCast",
 			"path": ".."
+		},
+		{
+			"path": "../../../Assignment /old"
 		}
 	],
 	"settings": {}
