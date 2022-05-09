@@ -18,7 +18,7 @@ const preOrder = (node, levelMap, level) => {
     levelMap[level].push(node.data);
   }
   preOrder(node.left, levelMap, level + 1);
-  preOrder(node.rightlevelMap, level + 1);
+  preOrder(node.right, levelMap, level + 1);
 };
 
 const levelOrder = (node) => {
