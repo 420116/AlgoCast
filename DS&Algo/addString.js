@@ -19,7 +19,6 @@ addStringNum = (str1, str2) => {
     } else {
       sum = Number(str1[i]) + Number(carry);
     }
-    //console.log(carry, str1[i], str2[i]);
     //Reset to zero
     carry = "0";
     //Taking carry forward number
