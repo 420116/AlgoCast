@@ -25,12 +25,22 @@ rodCut([1, 5, 8, 9, 10, 17, 17, 20], 8);
 
 //DFS Solution
 
+// const cutRod = (price, N, maxPrice, i) => {
+//   if (N === 0) {
+//     return Math.floor(maxPrice / 2);
+//   }
+
 const cutRod = (price, N, maxPrice, i) => {
-  if (N >= 0) {
+  if (N <= i) {
     return maxPrice;
   }
-
-  return Math.max(price[i] + cutRod(price, N - 1, maxPrice, i + 1));
+  maxPrice = Math.max(
+    maxPrice,
+    price[i] + cutRod(price, N - i - 1, maxPrice, i + 1)
+  );
+  return maxPrice;
 };
+//   return maxPrice;
+// };
 
 console.log(cutRod([1, 5, 8, 9, 10, 17, 17, 20], 8, 0, 0));
