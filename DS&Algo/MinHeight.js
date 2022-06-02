@@ -1,6 +1,8 @@
 const getMin = (arr, N, K) => {
   let max = 0;
   let min = 0;
+  arr = arr.sort((a, b) => a - b);
+  //console.log(arr);
   for (let i = 0; i < N; i++) {
     if (arr[i] - K > 0) {
       arr[i] = arr[i] - K;
@@ -15,8 +17,8 @@ const getMin = (arr, N, K) => {
       min = Math.min(min, arr[i]);
     }
   }
-  console.log(arr, max - min);
+
   return max - min;
 };
 
-getMin([2, 6, 3, 4, 7, 2, 10, 3, 2, 1], 10, 5);
+console.log(getMin([2, 6, 3, 4, 7, 2, 10, 3, 2, 1], 10, 5));
