@@ -1,24 +1,25 @@
-const getMin = (arr, N, K) => {
-  let max = 0;
-  let min = 0;
-  arr = arr.sort((a, b) => a - b);
-  //console.log(arr);
-  for (let i = 0; i < N; i++) {
-    if (arr[i] - K > 0) {
-      arr[i] = arr[i] - K;
-    } else {
-      arr[i] = K + arr[i];
+//Calculate max product of subarray
+// arr = [1,2,-3,4]
+
+const subarrayProduct = (arr) => {
+  let res = Math.max(...arr);
+  let currentMax = 1;
+  let currentMin = 1;
+  let temp = 1;
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i] === 0) {
+      currentMax = 1;
+      currentMin = 1;
+      continue;
     }
-    if (i === 0) {
-      max = arr[i];
-      min = arr[i];
-    } else {
-      max = Math.max(max, arr[i]);
-      min = Math.min(min, arr[i]);
-    }
+    temp = currentMax * arr[i];
+    currentMax = Math.max(currentMax * arr[i], currentMin * arr[i], arr[i]);
+    currentMin = Math.min(temp, currentMin * arr[i], arr[i]);
+    res = Math.max(res, currentMax);
   }
 
-  return max - min;
+  return res;
 };
 
-console.log(getMin([2, 6, 3, 4, 7, 2, 10, 3, 2, 1], 10, 5));
+console.log(subarrayProduct([1, 2, -3, 4]));
+console.log(subarrayProduct([6, -3, -10, 0, 2]));
