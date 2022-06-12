@@ -9,7 +9,7 @@ const sendCall = () => {
     results.push(res);
     return sendData(queue, results);
   });
-  //console.log(results);
+  //console.log(results)
   Promise.allSettled([Q1, Q2]).then((items) => {
     console.log(items);
   });
