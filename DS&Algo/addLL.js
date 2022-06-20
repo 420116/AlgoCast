@@ -29,11 +29,9 @@ const addTwoLists = (first, second) => {
   while (currFirst !== null && currSecond !== null) {
     //console.log(currFirst.data,currSecond.data);
     sum = currFirst.data + currSecond.data + carry;
-    // console.log(sum);
     if (sum > 9) {
       carry = Math.floor(sum / 10);
       sum = sum % 10;
-      // console.log(sum,carry);
     } else {
       carry = 0;
     }
@@ -46,35 +44,15 @@ const addTwoLists = (first, second) => {
     currSecond = currSecond.next;
 
     while (currFirst === null && currSecond !== null) {
-      console.log;
-      sum = currSecond.data + carry;
-      if (sum > 9) {
-        carry = Math.floor(sum / 10);
-        sum = sum % 10;
-      } else {
-        carry = 0;
-      }
-
-      res.data = sum;
-      let temp = new Node(0);
-      temp.next = res;
-      res = temp;
-      currSecond = currSecond.next;
+      let results = addRemaining(currSecond, carry, res);
+      res = results.res;
+      carry = results.carry;
     }
 
     while (currFirst !== null && currSecond === null) {
-      sum = currFirst.data + carry;
-      if (sum > 9) {
-        carry = Math.floor(sum / 10);
-        sum = sum % 10;
-      } else {
-        carry = 0;
-      }
-      res.data = sum;
-      let temp = new Node(0);
-      temp.next = res;
-      res = temp;
-      currFirst = currFirst.next;
+      let results = addRemaining(currFirst, carry, res);
+      res = results.res;
+      carry = results.carry;
     }
   }
   if (carry !== 0) {
@@ -95,4 +73,22 @@ const reverse = (head) => {
     current = current.next;
   }
   return first;
+};
+
+const addRemaining = (node, carry, res) => {
+  while (node === null) {
+    sum = node.data + carry;
+    if (sum > 9) {
+      carry = Math.floor(sum / 10);
+      sum = sum % 10;
+    } else {
+      carry = 0;
+    }
+    res.data = sum;
+    let temp = new Node(0);
+    temp.next = res;
+    res = temp;
+    node = node.next;
+  }
+  return { res, carry };
 };
