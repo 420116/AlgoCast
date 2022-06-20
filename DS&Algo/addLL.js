@@ -43,13 +43,13 @@ const addTwoLists = (first, second) => {
     currFirst = currFirst.next;
     currSecond = currSecond.next;
 
-    while (currFirst === null && currSecond !== null) {
+    if (currFirst === null && currSecond !== null) {
       let results = addRemaining(currSecond, carry, res);
       res = results.res;
       carry = results.carry;
     }
 
-    while (currFirst !== null && currSecond === null) {
+    if (currFirst !== null && currSecond === null) {
       let results = addRemaining(currFirst, carry, res);
       res = results.res;
       carry = results.carry;
@@ -76,8 +76,10 @@ const reverse = (head) => {
 };
 
 const addRemaining = (node, carry, res) => {
-  while (node === null) {
-    sum = node.data + carry;
+  let sum = 0;
+  let curr = node;
+  while (curr !== null) {
+    sum = curr.data + carry;
     if (sum > 9) {
       carry = Math.floor(sum / 10);
       sum = sum % 10;
@@ -88,7 +90,7 @@ const addRemaining = (node, carry, res) => {
     let temp = new Node(0);
     temp.next = res;
     res = temp;
-    node = node.next;
+    curr = curr.next;
   }
   return { res, carry };
 };
