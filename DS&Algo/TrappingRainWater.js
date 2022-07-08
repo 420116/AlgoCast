@@ -13,26 +13,29 @@
 const getTRW = (arr) => {
   let leftMax = arr[0];
   let rightMax = arr[arr.length - 1];
-  let counter = 0;
+  let leftPointer = 0;
+  let rightPointer = arr.length - 1;
   let sum = 0;
   let total = 0;
-  while (counter < arr.length) {
-    if (rightMax > leftMax) {
-      total = leftMax - arr[counter];
-      leftMax = Math.max(leftMax, arr[counter]);
+  while (leftPointer <= rightPointer) {
+    if (rightMax >= leftMax) {
+      total = leftMax - arr[leftPointer];
+      leftMax = Math.max(leftMax, arr[leftPointer]);
+      leftPointer++;
     } else {
-      total = total + rightMax - arr[counter];
-      rightMax = Math.max(rightMax, arr[counter]);
+      total = rightMax - arr[rightPointer];
+      rightMax = Math.max(rightMax, arr[rightPointer]);
+      rightPointer--;
     }
 
     if (total > 0) {
       sum = sum + total;
-      total = 0;
     }
-    counter++;
+    total = 0;
   }
 
   return sum;
 };
 
-console.log(getTRW([3, 0, 0, 2, 0, 4]));
+//console.log(getTRW([3, 0, 0, 2, 0, 4]));
+console.log(getTRW([6, 1, 8, 9, 2, 7, 9, 5, 4, 3]));
