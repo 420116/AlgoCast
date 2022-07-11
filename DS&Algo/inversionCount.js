@@ -8,7 +8,6 @@
 // Explanation: The sequence 2, 4, 1, 3, 5
 // has three inversions (2, 1), (4, 1), (4, 3).
 
-const getCount = (arr) => {};
 const split = (arr, start, end, invCount) => {
   if (end - start < 1) {
     return invCount;
