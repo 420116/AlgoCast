@@ -1,17 +1,32 @@
-const minDist = (a, n, x, y) => {
-  // previous index and min distance
-  var i = 0,
-    previous = -1,
-    min_dist = Number.MAX_VALUE;
-  let arr = a;
+// You are given an array A, of N elements.
+// Find minimum index based distance between two elements of the array, x and y.
 
-  for (i = 0; i < n; i++) {
-    if (arr[i] == x || arr[i] == y) {
+// Example 1:
+// Input:
+// N = 7 A[] = {86,39,90,67,84,66,62}
+// x = 42, y = 12
+// Output: -1
+// Explanation: x = 42 and y = 12. We return
+// -1 as x and y don't exist in the array.
+// N = 4 A[] = {1,2,3,2}
+// x = 1, y = 2
+// Output: 1
+// Explanation: x = 1 and y = 2. There are
+// two distances between x and y, which are
+// 1 and 3 out of which the least is 1.
+
+const minDist = (arr, n, x, y) => {
+  // previous index and min distance
+  let previous = -1,
+    min_dist = Number.MAX_VALUE;
+
+  for (let i = 0; i < n; i++) {
+    if (arr[i] === x || arr[i] === y) {
       // we will check if p is not equal to -1 and
       // If the element at current index matches with
       // the element at index p , If yes then update
       // the minimum distance if needed
-      if (previous != -1 && arr[i] != arr[previous]) {
+      if (previous !== -1 && arr[i] !== arr[previous]) {
         min_dist = Math.min(min_dist, i - previous);
       }
 
@@ -20,7 +35,7 @@ const minDist = (a, n, x, y) => {
     }
   }
   // If distance is equal to var max
-  if (min_dist == Number.MAX_VALUE) return -1;
+  if (min_dist === Number.MAX_VALUE) return -1;
   console.log(min_dist);
 };
 

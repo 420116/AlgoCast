@@ -7,38 +7,18 @@
 // Output:
 // 22
 
-//brute Force solution
-const rodCut = (price, N) => {
+const rodCut = (price, n) => {
   let maxPrice = 0;
-
-  for (let i = 0; i < N; i++) {
-    for (let j = i + 1; j < N; j++) {
-      if (i + j + 2 === N) {
-        maxPrice = Math.max(maxPrice, price[i] + price[j]);
-      }
+  let cache = new Array(n + 1);
+  cache[0] = 0;
+  for (let i = 1; i <= n; i++) {
+    maxPrice = 0;
+    for (let j = 0; j < i; j++) {
+      maxPrice = Math.max(maxPrice, price[j] + cache[i - j - 1]);
     }
+    cache[i] = maxPrice;
   }
-  console.log(maxPrice);
+  return cache[n];
 };
 
-rodCut([3, 5, 8, 9, 10, 17, 17, 20], 8);
-
-//DFS Solution
-const cutRod = (price, index, N) => {
-  if (index === 0) {
-    return N * price[0];
-  }
-
-  const notCut = cutRod(price, index - 1, N);
-  let cut = 0;
-  let rod_length = index + 1;
-  if (rod_length <= N) {
-    cut = price[index] + cutRod(price, index, N - rod_length);
-  }
-
-  return Math.max(notCut, cut);
-};
-//   return maxPrice;
-// };
-
-console.log(cutRod([1, 5, 8, 9, 10, 17, 17, 20], 0, 8));
+console.log(rodCut([1, 5, 8, 9, 10, 17, 17, 20], 8));
