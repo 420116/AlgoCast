@@ -22,7 +22,6 @@ const getMinStep = (arr, n) => {
     cur = 0;
   for (let i = 0; i < n - 1; i++) {
     max = Math.max(max, arr[i] + i);
-    console.log(max, arr[i], i);
     if (i === cur) {
       //console.log(cur);
       cur = max;
